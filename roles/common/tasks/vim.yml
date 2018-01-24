@@ -1,0 +1,20 @@
+---
+- name: Update vim
+  pacman:
+    name: vim
+    state: latest
+    update_cache: yes
+  become: true
+
+- name: Copy .vimrc config file
+  file:
+    src: .vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    mode: 0644
+
+- name: Copy .vim config folder
+  file:
+    src: .vim
+    dest: "{{ ansible_env.HOME }}/.vim"
+    state: directory
+    recurse: true
