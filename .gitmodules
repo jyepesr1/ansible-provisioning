@@ -1,3 +1,6 @@
 [submodule "roles/common/files/.vim/bundle/vim-colors-solarized"]
 	path = roles/arch-linux/files/.vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
+[submodule "roles/arch-linux/files/.vim/bundle/YouCompleteMe"]
+	path = roles/arch-linux/files/.vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe
