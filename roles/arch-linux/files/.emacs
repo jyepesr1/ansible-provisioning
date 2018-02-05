@@ -38,7 +38,9 @@
     ("eea01f540a0f3bc7c755410ea146943688c4e29bea74a29568635670ab22f9bc" "d606ac41cdd7054841941455c0151c54f8bff7e4e050255dbd4ae4d60ab640c1" default)))
  '(package-selected-packages
    (quote
-    (cuda-mode powerline-evil evil monokai-theme auto-complete)))
+    (cuda-mode powerline-evil evil monokai-theme auto-complete yaml-mode puppet-mode)))
+ '(puppet-include-indent 4)
+ '(puppet-indent-level 4)
  '(python-guess-indent nil)
  '(python-indent-guess-indent-offset nil)
  '(python-indent-offset 2))

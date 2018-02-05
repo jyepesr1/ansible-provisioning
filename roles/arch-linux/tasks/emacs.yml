@@ -1,22 +1,23 @@
----
-- name: Update emacs
+- name: Install emacs
   pacman:
     name: emacs-nox
     state: latest
   become: yes
+  run_once: yes
 
 - name: Copy .emacs config copy
   copy:
     src: .emacs
     dest: "{{ ansible_env.HOME }}/.emacs"
     mode: 0644
+    force: no
+  notify: restart emacs
 
 - name: Copy .emacs.d config folder
   copy:
-    src: .emacs.d
+    src: .emacs.d/
     dest: "{{ ansible_env.HOME }}/.emacs.d"
-    state: directory
-    recurse: yes
+    force: no
 
 - name: Ensuring presence of local systemd folder
   file:
@@ -28,6 +29,7 @@
     src: emacs.service
     dest: "{{ ansible_env.HOME }}/.config/systemd/user/emacs.service"
     mode: 0644
+    force: no
 
 - name: Enable and start emacs service
   systemd:
