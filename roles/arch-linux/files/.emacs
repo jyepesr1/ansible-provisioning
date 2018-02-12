@@ -17,17 +17,18 @@
 
 (require 'evil)
 (evil-mode 1)
+(setq-default evil-default-state 'emacs)
 
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 
-(setq make-backup-files nil)
-(setq auto-save-default nil)
+(setq-default make-backup-files nil)
+(setq-default auto-save-default nil)
 
-(setq c-basic-indent 2)
-(setq indent-tabs-mode nil)
-(setq tab-width 2)
+(setq-default c-basic-indent 2)
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 2)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -24,3 +24,9 @@
     src: "{{ ansible_env.HOME }}/.vimrc"
     dest: "{{ ansible_env.HOME }}/.vim/init.vim"
     state: link
+
+- name: Install Powerline via Pip
+  pip:
+    name: powerline
+    executable: pip3
+    extra_args: --user
