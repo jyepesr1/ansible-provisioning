@@ -1,0 +1,9 @@
+- name: restart emacs
+  systemd:
+    name: emacs
+    state: restarted
+    enabled: yes
+    user: yes
+
+- name: update_fonts
+  command: fc-cache -vf {{ ansible_env.HOME }}/.fonts

@@ -1,0 +1,36 @@
+- name: Install emacs
+  package:
+    name: emacs-nox
+    state: latest
+  become: yes
+  run_once: yes
+
+- name: Copy .emacs config copy
+  copy:
+    src: .emacs
+    dest: "{{ ansible_env.HOME }}/.emacs"
+    mode: 0644
+  notify: restart emacs
+
+- name: Copy .emacs.d config folder
+  copy:
+    src: .emacs.d/
+    dest: "{{ ansible_env.HOME }}/.emacs.d"
+
+- name: Ensuring presence of local systemd folder
+  file:
+    path: "{{ ansible_env.HOME }}/.config/systemd/user/"
+    state: directory
+
+- name: Copy emacs unit copy
+  copy:
+    src: emacs.service
+    dest: "{{ ansible_env.HOME }}/.config/systemd/user/emacs.service"
+    mode: 0644
+
+- name: Enable and start emacs service
+  systemd:
+    name: emacs
+    state: started
+    enabled: yes
+    user: yes

@@ -1,0 +1,23 @@
+- name: Install vim
+  package:
+    name: vim
+    state: latest
+  become: yes
+  run_once: yes
+
+- name: Copy .vimrc config file
+  copy:
+    src: .vimrc
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    mode: 0644
+
+- name: Copy .vim config folder
+  copy:
+    src: .vim/
+    dest: "{{ ansible_env.HOME }}/.vim"
+
+- name: Create init.vim symlink
+  file:
+    src: "{{ ansible_env.HOME }}/.vimrc"
+    dest: "{{ ansible_env.HOME }}/.vim/init.vim"
+    state: link

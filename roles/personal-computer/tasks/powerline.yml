@@ -1,0 +1,27 @@
+- name: Install Powerline via Pip
+  pip:
+    name: "git+git://github.com/powerline/powerline"
+    executable: pip3
+    extra_args: --user
+
+- name: Ensure .fonts exists
+  file:
+    path: "{{ ansible_env.HOME }}/.fonts"
+    state: directory
+
+- name: Ensure fontconfig path exists
+  file:
+    path: "{{ ansible_env.HOME }}/.config/fontconfig/conf.d/"
+    state: directory
+
+- name: Get Powerline fonts
+  get_url:
+    url: "https://github.com/powerline/powerline/raw/develop/font/PowerlineSymbols.otf"
+    dest: "{{ ansible_env.HOME }}/.fonts"
+  notify: update_fonts
+
+- name: Install the fontconfig file
+  get_url:
+    url: "https://github.com/powerline/powerline/raw/develop/font/10-powerline-symbols.conf"
+    dest: "{{ ansible_env.HOME }}/.config/fontconfig/conf.d/"
+    
